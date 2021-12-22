@@ -1,15 +1,20 @@
 package com.wogoo.mercatopoke.controller
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
+import com.wogoo.mercatopoke.controller.request.PostCustomerRequest
+import com.wogoo.mercatopoke.model.CustomerModel
+import org.springframework.web.bind.annotation.*
 
 @RestController
+@RequestMapping("customers")
 class CustomerController {
 
     @GetMapping
-    fun hello(): String {
-        return "Hello"
+    fun getCustomer(): CustomerModel {
+        return CustomerModel("1", "ALU", "alu@ttt")
     }
-
+    @PostMapping
+    fun create(@RequestBody customer: PostCustomerRequest) {
+        println(customer)
+    }
 
 }
