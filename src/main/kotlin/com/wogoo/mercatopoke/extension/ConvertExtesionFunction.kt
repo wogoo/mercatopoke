@@ -3,6 +3,7 @@ package com.wogoo.mercatopoke.extension
 import com.wogoo.mercatopoke.controller.request.PostPokeRequest
 import com.wogoo.mercatopoke.controller.request.PostCustomerRequest
 import com.wogoo.mercatopoke.controller.request.PutCustomerRequest
+import com.wogoo.mercatopoke.controller.request.PutPokeRequest
 import com.wogoo.mercatopoke.enums.PokeStatus
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.model.PokeModel
@@ -19,5 +20,14 @@ fun PostPokeRequest.toPokeModel(customer: CustomerModel): PokeModel {
         price = this.price,
         status = PokeStatus.ATIVO,
         customer = customer
+    )
+}
+fun PutPokeRequest.toPokeModel(previousValue: PokeModel): PokeModel {
+    return PokeModel(
+        id = previousValue.id,
+        name = this.name ?: previousValue.name,
+        price = this.price ?: previousValue.price,
+        status = previousValue.status,
+        customer = previousValue.customer
     )
 }
