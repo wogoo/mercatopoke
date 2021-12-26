@@ -2,6 +2,7 @@ package com.wogoo.mercatopoke.service
 
 import com.wogoo.mercatopoke.controller.request.PostPokeRequest
 import com.wogoo.mercatopoke.enums.PokeStatus
+import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.model.PokeModel
 import com.wogoo.mercatopoke.repository.PokeRepository
 import org.springframework.stereotype.Service
@@ -35,6 +36,14 @@ class PokeService(
 
     fun update(poke: PokeModel) {
         pokeRepository.save(poke)
+    }
+
+    fun deleteByCustomer(customer: CustomerModel) {
+        val pokes = pokeRepository.findByCustomer(customer)
+        for(poke in pokes) {
+            poke.status = PokeStatus.DELETADO
+        }
+        pokeRepository.saveAll(pokes)
     }
 
 }

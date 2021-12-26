@@ -21,7 +21,7 @@ class PokeController(
         @PostMapping
         @ResponseStatus(HttpStatus.CREATED)
         fun create(@RequestBody request: PostPokeRequest) {
-            val customer = customerService.getById(request.customerId)
+            val customer = customerService.findById(request.customerId)
             pokeService.create(request.toPokeModel(customer))
         }
 

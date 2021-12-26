@@ -4,15 +4,16 @@ import com.wogoo.mercatopoke.controller.request.PostPokeRequest
 import com.wogoo.mercatopoke.controller.request.PostCustomerRequest
 import com.wogoo.mercatopoke.controller.request.PutCustomerRequest
 import com.wogoo.mercatopoke.controller.request.PutPokeRequest
+import com.wogoo.mercatopoke.enums.CustomerStatus
 import com.wogoo.mercatopoke.enums.PokeStatus
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.model.PokeModel
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
-    return CustomerModel(name = this.name, email =  this.email)
+    return CustomerModel(name = this.name, email =  this.email, status = CustomerStatus.ATIVO)
 }
-fun PutCustomerRequest.toCustomerModel(id: Int): CustomerModel {
-    return CustomerModel(id = id, name = this.name, email =  this.email)
+fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerModel {
+    return CustomerModel(id = previousValue.id, name = this.name, email =  this.email, status = previousValue.status)
 }
 fun PostPokeRequest.toPokeModel(customer: CustomerModel): PokeModel {
     return PokeModel(

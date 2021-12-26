@@ -1,5 +1,6 @@
 package com.wogoo.mercatopoke.service
 
+import com.wogoo.mercatopoke.enums.CustomerStatus
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.repository.CustomerRepository
 import org.springframework.stereotype.Service
@@ -7,7 +8,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class CustomerService(
-    val customerRepository: CustomerRepository
+    val customerRepository: CustomerRepository,
+    val pokeService: PokeService
 ) {
 
     fun getAll(name: String?): List<CustomerModel> {
@@ -21,7 +23,7 @@ class CustomerService(
         customerRepository.save(customer)
     }
 
-    fun getById(id: Int): CustomerModel {
+    fun findById(id: Int): CustomerModel {
         return customerRepository.findById(id).get()
     }
 
@@ -34,10 +36,12 @@ class CustomerService(
     }
 
     fun delete(id: Int) {
-        if(!customerRepository.existsById(id)){
-            throw Exception()
-        }
-        customerRepository.deleteById(id)
+        val customer = findById(id)
+        pokeService.deleteByCustomer(customer)
+
+        customer.status = CustomerStatus.INATIVO
+
+        customerRepository.save(customer)
     }
 
 }
