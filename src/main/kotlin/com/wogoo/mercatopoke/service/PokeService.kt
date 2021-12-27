@@ -5,7 +5,10 @@ import com.wogoo.mercatopoke.enums.PokeStatus
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.model.PokeModel
 import com.wogoo.mercatopoke.repository.PokeRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+
 
 @Service
 class PokeService(
@@ -15,12 +18,12 @@ class PokeService(
         pokeRepository.save(poke)
     }
 
-    fun findAll(): List<PokeModel> {
-       return pokeRepository.findAll().toList()
+    fun findAll(pageable: Pageable): Page<PokeModel> {
+       return pokeRepository.findAll(pageable)
     }
 
-    fun findActives(): List<PokeModel> {
-        return pokeRepository.findByStatus(PokeStatus.ATIVO)
+    fun findActives(pageable: Pageable): Page<PokeModel> {
+        return pokeRepository.findByStatus(PokeStatus.ATIVO, pageable)
     }
 
     fun findById(id: Int): PokeModel {

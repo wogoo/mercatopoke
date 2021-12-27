@@ -2,10 +2,14 @@ package com.wogoo.mercatopoke.controller
 
 import com.wogoo.mercatopoke.controller.request.PostPokeRequest
 import com.wogoo.mercatopoke.controller.request.PutPokeRequest
+import com.wogoo.mercatopoke.controller.response.PokeResponse
 import com.wogoo.mercatopoke.extension.toPokeModel
-import com.wogoo.mercatopoke.model.PokeModel
+import com.wogoo.mercatopoke.extension.toResponse
 import com.wogoo.mercatopoke.service.CustomerService
 import com.wogoo.mercatopoke.service.PokeService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -26,17 +30,17 @@ class PokeController(
         }
 
         @GetMapping
-        fun findAll(): List<PokeModel> {
-            return pokeService.findAll()
+        fun findAll(@PageableDefault(page = 0, size = 10)pageable: Pageable): Page<PokeResponse> {
+            return pokeService.findAll(pageable).map { it.toResponse() }
         }
 
         @GetMapping("/active")
-        fun findActives(): List<PokeModel> =
-             pokeService.findActives()
+        fun findActives(@PageableDefault(page = 0, size = 10)pageable: Pageable): Page<PokeResponse> =
+             pokeService.findActives(pageable).map { it.toResponse() }
 
         @GetMapping("/{id}")
-        fun findById(@PathVariable id: Int): PokeModel {
-            return pokeService.findById(id)
+        fun findById(@PathVariable id: Int): PokeResponse {
+            return pokeService.findById(id).toResponse()
         }
 
         @DeleteMapping("/{id}")

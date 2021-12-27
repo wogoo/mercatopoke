@@ -15,11 +15,27 @@ data class PokeModel (
     var name: String,
     @Column
     var price: BigDecimal,
-    @Column
-    @Enumerated(EnumType.STRING)
-    var status: PokeStatus? = null,
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     var customer: CustomerModel? = null
-        )
+        ) {
+    @Column
+    @Enumerated(EnumType.STRING)
+    var status: PokeStatus? = null
+        set(value) {
+            if(field == PokeStatus.CANCELADO || field == PokeStatus.DELETADO)
+                throw Exception("Não é possivel alterar o livro com status ${field}")
+                field = value
+
+        }
+
+    constructor(id: Int? = null,
+                name: String,
+                price: BigDecimal,
+                customer: CustomerModel? = null,
+                status: PokeStatus?): this(id, name, price, customer) {
+                    this.status = status
+                }
+
+}
