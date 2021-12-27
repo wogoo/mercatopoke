@@ -1,6 +1,5 @@
 package com.wogoo.mercatopoke.controller.response
 
-import com.wogoo.mercatopoke.enums.CustomerStatus
 import com.wogoo.mercatopoke.enums.PokeStatus
 import com.wogoo.mercatopoke.model.CustomerModel
 import java.math.BigDecimal

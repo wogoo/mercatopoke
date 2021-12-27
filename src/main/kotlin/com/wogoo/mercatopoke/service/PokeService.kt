@@ -2,6 +2,7 @@ package com.wogoo.mercatopoke.service
 
 import com.wogoo.mercatopoke.controller.request.PostPokeRequest
 import com.wogoo.mercatopoke.enums.PokeStatus
+import com.wogoo.mercatopoke.exception.NotFoundException
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.model.PokeModel
 import com.wogoo.mercatopoke.repository.PokeRepository
@@ -27,7 +28,7 @@ class PokeService(
     }
 
     fun findById(id: Int): PokeModel {
-        return pokeRepository.findById(id).get()
+        return pokeRepository.findById(id).orElseThrow { NotFoundException("Poke [${id}] not exist", "MP-0001")}
     }
 
     fun delete(id: Int) {

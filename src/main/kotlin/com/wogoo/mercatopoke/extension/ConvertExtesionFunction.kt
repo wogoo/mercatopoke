@@ -35,7 +35,6 @@ fun PutPokeRequest.toPokeModel(previousValue: PokeModel): PokeModel {
     )
 }
 
-
 fun CustomerModel.toResponse(): CustomerResponse {
     return CustomerResponse(
         id = this.id,

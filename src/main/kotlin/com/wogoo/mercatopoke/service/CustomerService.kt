@@ -1,6 +1,7 @@
 package com.wogoo.mercatopoke.service
 
 import com.wogoo.mercatopoke.enums.CustomerStatus
+import com.wogoo.mercatopoke.exception.NotFoundException
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.repository.CustomerRepository
 import org.springframework.stereotype.Service
@@ -24,7 +25,7 @@ class CustomerService(
     }
 
     fun findById(id: Int): CustomerModel {
-        return customerRepository.findById(id).get()
+        return customerRepository.findById(id).orElseThrow { NotFoundException("Customer [${id}] not exists", "MP-0002") }
     }
 
     fun update(customer: CustomerModel) {
@@ -43,5 +44,6 @@ class CustomerService(
 
         customerRepository.save(customer)
     }
+
 
 }

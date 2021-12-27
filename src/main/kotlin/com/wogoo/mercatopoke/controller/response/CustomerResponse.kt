@@ -1,7 +1,6 @@
 package com.wogoo.mercatopoke.controller.response
 
 import com.wogoo.mercatopoke.enums.CustomerStatus
-import javax.persistence.*
 
 data class CustomerResponse(
 

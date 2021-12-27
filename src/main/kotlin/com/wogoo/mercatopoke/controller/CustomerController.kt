@@ -7,6 +7,9 @@ import com.wogoo.mercatopoke.extension.toCustomerModel
 import com.wogoo.mercatopoke.extension.toResponse
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.service.CustomerService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
