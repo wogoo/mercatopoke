@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 
 @RestController
@@ -24,7 +25,7 @@ class PokeController(
     {
         @PostMapping
         @ResponseStatus(HttpStatus.CREATED)
-        fun create(@RequestBody request: PostPokeRequest) {
+        fun create(@RequestBody @Valid request: PostPokeRequest) {
             val customer = customerService.findById(request.customerId)
             pokeService.create(request.toPokeModel(customer))
         }
