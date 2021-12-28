@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.flywaydb:flyway-mysql:8.2.3")
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.2")
 
 	runtimeOnly ("mysql:mysql-connector-java")
 
