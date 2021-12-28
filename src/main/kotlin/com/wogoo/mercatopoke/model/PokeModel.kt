@@ -1,6 +1,8 @@
 package com.wogoo.mercatopoke.model
 
+import com.wogoo.mercatopoke.enums.Errors
 import com.wogoo.mercatopoke.enums.PokeStatus
+import com.wogoo.mercatopoke.exception.BadRequestException
 import java.math.BigDecimal
 import javax.persistence.*
 
@@ -25,7 +27,7 @@ data class PokeModel (
     var status: PokeStatus? = null
         set(value) {
             if(field == PokeStatus.CANCELADO || field == PokeStatus.DELETADO)
-                throw Exception("Não é possivel alterar o livro com status ${field}")
+                throw BadRequestException(Errors.MP2002.message.format(field), Errors.MP2002.code)
                 field = value
 
         }

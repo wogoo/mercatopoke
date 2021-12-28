@@ -1,6 +1,7 @@
 package com.wogoo.mercatopoke.service
 
 import com.wogoo.mercatopoke.enums.CustomerStatus
+import com.wogoo.mercatopoke.enums.Errors
 import com.wogoo.mercatopoke.exception.NotFoundException
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.repository.CustomerRepository
@@ -25,7 +26,7 @@ class CustomerService(
     }
 
     fun findById(id: Int): CustomerModel {
-        return customerRepository.findById(id).orElseThrow { NotFoundException("Customer [${id}] not exists", "MP-0002") }
+        return customerRepository.findById(id).orElseThrow { NotFoundException(Errors.MP2101.message.format(id), Errors.MP2101.code) }
     }
 
     fun update(customer: CustomerModel) {
