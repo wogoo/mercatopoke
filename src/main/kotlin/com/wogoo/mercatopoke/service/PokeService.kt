@@ -50,4 +50,8 @@ class PokeService(
         pokeRepository.saveAll(pokes)
     }
 
+    fun finAllByIds(pokesIds: Set<Int>): List<PokeModel> {
+        return pokeRepository.findAllById(pokesIds).toList()
+    }
+
 }
