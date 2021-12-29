@@ -21,7 +21,7 @@ data class PurchaseModel(
         joinColumns = [JoinColumn(name = "purchase_id")],
         inverseJoinColumns = [JoinColumn(name = "poke_id")]
     )
-    val pokes: List<PokeModel>,
+    val pokes: MutableList<PokeModel>,
 
     @Column
     val nfe: String? = null,

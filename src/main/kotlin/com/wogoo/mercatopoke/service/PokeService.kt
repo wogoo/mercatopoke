@@ -54,4 +54,11 @@ class PokeService(
         return pokeRepository.findAllById(pokesIds).toList()
     }
 
+    fun purchase(pokes: MutableList<PokeModel>) {
+        pokes.map {
+            it.status = PokeStatus.VENDIDO
+        }
+        pokeRepository.saveAll(pokes)
+    }
+
 }

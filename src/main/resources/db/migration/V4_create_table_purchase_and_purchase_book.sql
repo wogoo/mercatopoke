@@ -6,11 +6,10 @@ CREATE TABLE purchase (
                           created_at DATETIME not null,
                           FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
-CREATE TABLE purchase_poke (
-
-        purchase_id int not null,
-        book_id int not null,
-        FOREIGN KEY(purchase_id) REFERENCES purchase(id),
-        FOREIGN KEY(poke_id) REFERENCES poke(id),
-        PRIMARY KEY (purchase_id, poke_id)
+CREATE TABLE purchase_poke(
+                              purchase_id int not null,
+                              poke_id int not null,
+                              FOREIGN KEY (purchase_id) REFERENCES purchase(id),
+                              FOREIGN KEY (poke_id) REFERENCES poke(id),
+                              PRIMARY KEY (purchase_id, poke_id)
 );

@@ -4,13 +4,11 @@ import com.wogoo.mercatopoke.controller.mapper.PurchaseMapper
 import com.wogoo.mercatopoke.controller.request.PostPurchaseRequest
 import com.wogoo.mercatopoke.service.PurchaseService
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 
 @RestController
+@RequestMapping("purchase")
 class PurchaseController(
     private val purchaseService: PurchaseService,
     private val purchaseMapper: PurchaseMapper
