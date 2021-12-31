@@ -6,13 +6,15 @@ import com.wogoo.mercatopoke.enums.Profile
 import com.wogoo.mercatopoke.exception.NotFoundException
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.repository.CustomerRepository
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 
 @Service
 class CustomerService(
-    val customerRepository: CustomerRepository,
-    val pokeService: PokeService
+    private val customerRepository: CustomerRepository,
+    private val pokeService: PokeService,
+    private val bCrypt: BCryptPasswordEncoder
 ) {
 
     fun getAll(name: String?): List<CustomerModel> {
@@ -24,7 +26,8 @@ class CustomerService(
 
     fun create(customer: CustomerModel) {
         val customerCopy = customer.copy(
-            roles = setOf(Profile.CUSTOMER)
+            roles = setOf(Profile.CUSTOMER),
+            password = bCrypt.encode(customer.password)
         )
         customerRepository.save(customerCopy)
     }
