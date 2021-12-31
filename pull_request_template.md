@@ -17,3 +17,7 @@ Outline the steps to test or reproduce the PR here.
 ```sh
 gs-spring-boot/initial
 ```
+When you finish, you can check your results against the code in 
+```sh
+gs-spring-boot/complete
+```
