@@ -15,5 +15,5 @@ Notes regarding deployment the contained body of work. these should note anv db 
 Outline the steps to test or reproduce the PR here.
 
 ```sh
-mvn spring-boot:run
+gs-spring-boot/initial
 ```

@@ -12,7 +12,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("customers")
-class CustomerController(val customerService: CustomerService) {
+class CustomerController(private val customerService: CustomerService) {
 
     @GetMapping
     fun getAll(@RequestParam name: String?): List<CustomerResponse> {

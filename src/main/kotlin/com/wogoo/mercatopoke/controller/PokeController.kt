@@ -18,8 +18,8 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("poke")
 class PokeController(
-    val pokeService: PokeService,
-    val customerService: CustomerService
+    private val pokeService: PokeService,
+    private val customerService: CustomerService
 )
 
     {
