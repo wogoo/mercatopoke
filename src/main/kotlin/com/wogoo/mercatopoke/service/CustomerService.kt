@@ -2,6 +2,7 @@ package com.wogoo.mercatopoke.service
 
 import com.wogoo.mercatopoke.enums.CustomerStatus
 import com.wogoo.mercatopoke.enums.Errors
+import com.wogoo.mercatopoke.enums.Profile
 import com.wogoo.mercatopoke.exception.NotFoundException
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.repository.CustomerRepository
@@ -22,7 +23,10 @@ class CustomerService(
     }
 
     fun create(customer: CustomerModel) {
-        customerRepository.save(customer)
+        val customerCopy = customer.copy(
+            roles = setOf(Profile.CUSTOMER)
+        )
+        customerRepository.save(customerCopy)
     }
 
     fun findById(id: Int): CustomerModel {

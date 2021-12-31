@@ -1,6 +1,7 @@
 package com.wogoo.mercatopoke.model
 
 import com.wogoo.mercatopoke.enums.CustomerStatus
+import com.wogoo.mercatopoke.enums.Profile
 import javax.persistence.*
 
 @Entity(name = "customer")
@@ -23,6 +24,8 @@ data class CustomerModel (
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    var roles: String
+    @ElementCollection(targetClass = Profile::class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "customer_roles", joinColumns = [JoinColumn(name = "customer_id")])
+    var roles: Set<Profile> = setOf()
 
         )
