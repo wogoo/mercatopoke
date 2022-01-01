@@ -5,8 +5,10 @@ import com.wogoo.mercatopoke.controller.request.PutCustomerRequest
 import com.wogoo.mercatopoke.controller.response.CustomerResponse
 import com.wogoo.mercatopoke.extension.toCustomerModel
 import com.wogoo.mercatopoke.extension.toResponse
+import com.wogoo.mercatopoke.security.UserCanOnlyAcessTheirOwnResource
 import com.wogoo.mercatopoke.service.CustomerService
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -26,6 +28,7 @@ class CustomerController(private val customerService: CustomerService) {
     }
 
     @GetMapping("/{id}")
+    @UserCanOnlyAcessTheirOwnResource
     fun getCustumer(@PathVariable id: Int): CustomerResponse {
         return customerService.findById(id).toResponse()
     }

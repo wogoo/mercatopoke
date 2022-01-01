@@ -6,6 +6,7 @@ import com.wogoo.mercatopoke.controller.response.FieldErrroResponse
 import com.wogoo.mercatopoke.enums.Errors
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.AccessDeniedException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -50,7 +51,17 @@ class ControllerAdvice {
         )
         return ResponseEntity(erro, HttpStatus.BAD_REQUEST)
     }
+    @ExceptionHandler(AccessDeniedException::class)
+    fun handleAccessDeniedException(ex: AccessDeniedException, request: WebRequest): ResponseEntity<ErrorResponse> {
+        val erro =  ErrorResponse(
+            HttpStatus.FORBIDDEN.value(),
+            Errors.MP000.message,
+            Errors.MP000.code,
+            null
+        )
 
+        return ResponseEntity(erro, HttpStatus.FORBIDDEN)
+    }
 
 
 }

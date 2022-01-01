@@ -26,6 +26,7 @@ dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.flywaydb:flyway-mysql:8.2.3")
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.2")
+	implementation ("io.jsonwebtoken:jjwt:0.9.1")
 
 	runtimeOnly ("mysql:mysql-connector-java")
 
