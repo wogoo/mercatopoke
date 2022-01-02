@@ -1,12 +1,14 @@
-## MercatoPoke
 
-**IN DEVELOPMENT**
-
-<p align="center" id="license">  
+<p align=" " id="license">  
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
    <a href="https://github.com/tgmarinho/README-ecoleta/stargazers">
   </a> 
 </p>
+
+## MercatoPoke
+
+**IN DEVELOPMENT**
+
 
 ## Description
 
