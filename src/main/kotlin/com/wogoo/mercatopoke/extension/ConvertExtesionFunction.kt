@@ -5,11 +5,14 @@ import com.wogoo.mercatopoke.controller.request.PostCustomerRequest
 import com.wogoo.mercatopoke.controller.request.PutCustomerRequest
 import com.wogoo.mercatopoke.controller.request.PutPokeRequest
 import com.wogoo.mercatopoke.controller.response.CustomerResponse
+import com.wogoo.mercatopoke.controller.response.PageResponse
 import com.wogoo.mercatopoke.controller.response.PokeResponse
 import com.wogoo.mercatopoke.enums.CustomerStatus
 import com.wogoo.mercatopoke.enums.PokeStatus
 import com.wogoo.mercatopoke.model.CustomerModel
 import com.wogoo.mercatopoke.model.PokeModel
+import org.springframework.data.domain.Page
+
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(name = this.name, email =  this.email, status = CustomerStatus.ATIVO, password = this.password)
@@ -52,4 +55,8 @@ fun PokeModel.toResponse(): PokeResponse {
         customer = this.customer,
         status = this.status
     )
+}
+
+fun <T> Page<T>.toPageResponse(): PageResponse<T> {
+    return PageResponse(this.content, this.number, this.totalElements, this.totalPages  )
 }

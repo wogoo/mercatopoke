@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class PokeService(
-    val pokeRepository: PokeRepository
+   private val pokeRepository: PokeRepository
 ) {
     fun create(poke: PokeModel) {
         pokeRepository.save(poke)

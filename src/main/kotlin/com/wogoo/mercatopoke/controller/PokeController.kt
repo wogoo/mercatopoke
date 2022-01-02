@@ -2,7 +2,9 @@ package com.wogoo.mercatopoke.controller
 
 import com.wogoo.mercatopoke.controller.request.PostPokeRequest
 import com.wogoo.mercatopoke.controller.request.PutPokeRequest
+import com.wogoo.mercatopoke.controller.response.PageResponse
 import com.wogoo.mercatopoke.controller.response.PokeResponse
+import com.wogoo.mercatopoke.extension.toPageResponse
 import com.wogoo.mercatopoke.extension.toPokeModel
 import com.wogoo.mercatopoke.extension.toResponse
 import com.wogoo.mercatopoke.service.CustomerService
@@ -16,7 +18,7 @@ import javax.validation.Valid
 
 
 @RestController
-@RequestMapping("poke")
+@RequestMapping("pokes")
 class PokeController(
     private val pokeService: PokeService,
     private val customerService: CustomerService
@@ -31,8 +33,8 @@ class PokeController(
         }
 
         @GetMapping
-        fun findAll(@PageableDefault(page = 0, size = 10)pageable: Pageable): Page<PokeResponse> {
-            return pokeService.findAll(pageable).map { it.toResponse() }
+        fun findAll(@PageableDefault(page = 0, size = 10)pageable: Pageable): PageResponse<PokeResponse> {
+            return pokeService.findAll(pageable).map { it.toResponse() }.toPageResponse()
         }
 
         @GetMapping("/active")

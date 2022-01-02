@@ -1,17 +1,13 @@
 spring:
+  profiles:
+    active: dev
   jpa:
     hibernate:
       ddl-auto: update
-  datasource:
-    url: jdbc:mysql://localhost:3306/mercatopoke?createDatabaseIfNotExist=true
-    username: root
-    password: root
+
   jackson:
     default-property-inclusion: non_null
 
-springdoc:
-  swagger-ui:
-    path: '/swagger-ui.html'
 
 jwt:
   secret: 0a592da8-e4b6-4fc6-88c8-719c3064bc41
