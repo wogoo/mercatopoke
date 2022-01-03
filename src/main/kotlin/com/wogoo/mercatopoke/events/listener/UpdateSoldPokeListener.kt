@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class UpdateSoldBookListener(
+class UpdateSoldPokeListener(
     private val pokeService: PokeService
 ) {
 
