@@ -49,7 +49,7 @@ class ControllerAdvice {
                 it.defaultMessage ?: "Invalid", it.field
             ) }
         )
-        return ResponseEntity(erro, HttpStatus.BAD_REQUEST)
+        return ResponseEntity(erro, HttpStatus.UNPROCESSABLE_ENTITY)
     }
     @ExceptionHandler(AccessDeniedException::class)
     fun handleAccessDeniedException(ex: AccessDeniedException, request: WebRequest): ResponseEntity<ErrorResponse> {

@@ -2,9 +2,8 @@ package com.wogoo.mercatopoke.service
 
 import com.wogoo.mercatopoke.enums.CustomerStatus
 import com.wogoo.mercatopoke.enums.Errors
-import com.wogoo.mercatopoke.enums.Role
 import com.wogoo.mercatopoke.exception.NotFoundException
-import com.wogoo.mercatopoke.model.CustomerModel
+import com.wogoo.mercatopoke.helper.buildCustomer
 import com.wogoo.mercatopoke.repository.CustomerRepository
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
@@ -14,7 +13,6 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.just
 import io.mockk.runs
 import io.mockk.verify
-import org.apache.commons.lang3.RandomUtils.nextInt
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -201,17 +199,5 @@ import java.util.*
         verify(exactly = 1) { customerRepository.existsByEmail(email) }
     }
 
-    fun buildCustomer(
-        id: Int? = null,
-        name: String = "customer name",
-        email: String="${UUID.randomUUID()}@poke.com",
-        password: String = "password"
-    ) = CustomerModel(
-        id = id,
-        name = name,
-        email = email,
-        status = CustomerStatus.ATIVO,
-        password = password,
-        roles = setOf(Role.CUSTOMER)
-    )
+
  }
